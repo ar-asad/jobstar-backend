@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
         minLength: 8,
     },
     location: {
-        type: Strong,
+        type: String,
         default: 'add your location',
     },
 });

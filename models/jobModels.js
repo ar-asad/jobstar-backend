@@ -4,24 +4,33 @@ const mongoose = require('mongoose');
 const jobSchema = new mongoose.Schema({
     position: {
         type: String,
-        required: [true, 'Job must have a position'],
+        required: [true, "Job must have a position"],
         trim: true,
         lowercase: true,
     },
     company: {
         type: String,
-        required: [true, 'Job must have a position']KeyboardEvent,
-        trim: true
+        required: [true, "Job must have a company name"],
+        trim: true,
     },
     jobLocation: {
         type: String,
-        required: [true, 'job must have a location'],
+        required: [true, "Job must have a location"],
         trim: true,
         lowercase: true,
     },
     status: {
         type: String,
-        required: [true, 'job must have a type'],
+        required: [true, "Job must have a status"],
+        lowercase: true,
+        enum: {
+            values: ["interview", "declined", "pending"],
+            message: "Invalid data for status. (interview/declined/pending)",
+        },
+    },
+    jobType: {
+        type: String,
+        required: [true, "Job must have a type"],
         trim: true,
         lowercase: true,
         enum: {
@@ -37,6 +46,6 @@ const jobSchema = new mongoose.Schema({
 });
 
 // Model
-const Job = mongoose.model('Job', jobSchema);
+const Job = mongoose.model("Job", jobSchema);
 
 module.exports = Job;
